@@ -1,0 +1,70 @@
+has_many & belongs_to relationships
+has_many through w/ a join table (user submit(table attribute))
+###############################################
+Guider has_many courses (my user is my Guider)
+
+Course have many Actions
+Actions have many Courses
+
+Join table: Action_step
+	~ course_id
+	~ action_id
+	~ category - Mind & Body, Mood, Sleep, Social, Science
+	~ work - Body Work or Mind Work
+
+
+
+- Guider should be able to create action_steps for the courses, it should be saved
+		in case they want to reuse the step (like tags)
+
+- Filter the Actions by category or work and add them to your Courses
+- Action title and description should be an attribute for Action NOT Action_step
+
+#####################################################
+THE CORRECT INFORMATION
+
+# Set up a User model
+# Set up the login/signup (you can use omniauth here)
+
+User
+- has_many :actions
+- has_many :courses, through: actions
+
+ACTION
+- belong_to :user
+- belong_to :course
+
+COURSE
+- has_many :actions
+- has_many :users, through: :actions
+
+create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "course_rating"
+    t.string "category" #Mind & Body, etc.
+    t.integer "time" - estimated time they should work on this course
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "step"
+    t.text "description"
+    #t.integer "time" - Worry about this later. how much time you should spend doing this action!
+    t.string "category" #Breathing, Thinking, Writing, Reading, Movement
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.integer "mindful_minutes"
+    t.integer "courses_completed"
+    t.boolean "admin", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+	
+	
