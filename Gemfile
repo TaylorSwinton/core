@@ -33,6 +33,9 @@ gem 'pry'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# Use to set secure environment for login
+gem 'dotenv-rails'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
