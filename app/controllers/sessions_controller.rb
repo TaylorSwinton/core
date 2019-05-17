@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         end
     end
 
-    #omniauth login
+    #omniauth Facebook login
     def fbcreate
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
             u.name = auth['info']['name']
