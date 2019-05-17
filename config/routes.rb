@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
-  resources :courses
+  resources :courses 
   resources :actions
   resources :users
+
+#Nested Routes
+ resources :courses do
+    resources :actions, only: [:create, :new]
+ end
+
+ resources :users do
+    resources :courses, only: :index
+ end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+
+  #Login/Signup Routes Here
   root 'sessions#home'
 
   get '/signup' => 'users#new'
