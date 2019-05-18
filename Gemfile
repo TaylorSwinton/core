@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pry'
 
+# Use creation of nested forms quickly
+gem 'nested_form_fields'
+
 # Use third party login - Facebook
 gem 'omniauth'
 gem 'omniauth-facebook'

@@ -1,23 +1,24 @@
 class CoursesController < ApplicationController
     def new
         @course = Course.new
+        2.times {@course.actions.build}
     end
 
     def index
         @courses = Course.all
     end
 
-    def show
-        @course = Course.find_by(id: params[:id])
-    end
-
     def edit
         @course = Course.find_by(id: params[:id])
     end
 
-    def create
-        @course = current_user.courses.build(course_params)
+    def show
+        @course = Course.find_by(id: params[:id])
+    end
 
+    def create
+        #@course = current_user.courses.build(course_params)
+        @course = Course.new(course_params)
         if @course.save
             redirect_to course_path(@course)
         else

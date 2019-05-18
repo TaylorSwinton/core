@@ -1,1 +1,11 @@
-<h1>Your Course<h1>
+<h1><%= @course.title %> Course<h1>
+<h3>Category: <%= @course.category %> </h3>
+<h4>Time that should be spent on course: <%= @course.time %> Minutes </h4>
+<p><%= @course.description %></p>
+
+<ul>
+    <%= @course.actions.each do |action| %>
+        <li><%= action %></li>
+    <% end %>
+</ul>
+

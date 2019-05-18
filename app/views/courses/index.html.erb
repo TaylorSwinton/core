@@ -1,1 +1,6 @@
 <h1>All Courses</h1>
+<ul>
+    <%= @courses.each do |course| %>
+        <li><%= link_to course.title, course_path(course) %></li>
+    <% end %>
+</ul>
