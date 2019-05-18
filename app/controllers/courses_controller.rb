@@ -1,24 +1,11 @@
 class CoursesController < ApplicationController
-    def new
-        
-    end
 
     def index
-    end
-
-    def edit
+        @courses = Course.all
     end
 
     def show
+        @course = Course.find_by(id: params[:id])
     end
-
-    def create
-
-    end
-
-    private
-
-    def course_params
-
-    end
+    
 end

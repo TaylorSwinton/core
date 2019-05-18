@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :courses 
-  resources :actions
+  resources :steps
   resources :users
 
 #Nested Routes
  resources :courses do
-    resources :actions, only: [:create, :new, :index]
+    resources :steps, only: [:create, :new, :index]
  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

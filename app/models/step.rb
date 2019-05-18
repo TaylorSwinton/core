@@ -1,4 +1,4 @@
-class Action < ApplicationRecord
+class Step < ApplicationRecord
 #Associations
     belongs_to :user
     belongs_to :course
