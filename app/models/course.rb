@@ -1,5 +1,4 @@
 class Course < ApplicationRecord
-
 #Associations
     has_many :actions
     has_many :users, through: :actions

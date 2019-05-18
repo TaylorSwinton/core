@@ -1,0 +1,28 @@
+<h1>Create an Action</h1>
+
+<%= form_for(@action) do |f| %>
+    <%= f.label :step, "Step Name:" %>
+    <%= f.text_field :step %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.label :time %>
+    <%= f.number_field :time, min:0 %> Minutes
+    <br>
+    <%= f.label :category %>
+    <%= f.select(:category, [ "Mind", "Body", "Mood", "Sleep", "Social" ]) %>
+
+    <br>
+    <br>
+
+    <h5>Add Your Action To A Course</h5>
+
+    <%= f.label :course_id, "Choose Course" %>
+        <%= f.collection_select :course_id, Course.all, :id, :title %>
+
+    <br>
+    <%= f.submit %>
+
+<% end %>
+

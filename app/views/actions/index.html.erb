@@ -1,0 +1,9 @@
+<h1>All Actions</h1>
+
+<%= @actions.each do |action| %>
+<div>
+    <%= link_to action.step, action_path(action) - @action.time%> Minutes
+    Created By: <%= action.user.try(:name) %>
+    Included In: <%= action.course.try(:title) %>
+<div>
+<% end %>
