@@ -24,21 +24,22 @@
         <%= f.collection_select :course_id, Course.all, :id, :title, prompt: true %>
 
     <br><br>
+    <% if !params[:course_id] %>
+        <h5>Create A Course</h5>
 
-    <h5>Create A Course</h5>
-
-    <%= f.fields_for :course do |c| %>
-        <%= c.label :title %>
-        <%= c.text_field :title %>
-        <br>
-        <%= c.label :description %>
-        <%= c.text_area :description %>
-        <br>
-        <%= f.label :category %>
-        <%= f.select(:category, [ "Workout", "Meditation", "Journaling"]) %>
-        <br>
-        <%= f.label :time %>
-        <%= f.number_field :time %>
+        <%= f.fields_for :course do |c| %>
+            <%= c.label :title %>
+            <%= c.text_field :title %>
+            <br>
+            <%= c.label :description %>
+            <%= c.text_area :description %>
+            <br>
+            <%= f.label :category %>
+            <%= f.select(:category, [ "Workout", "Meditation", "Journaling"]) %>
+            <br>
+            <%= f.label :time %>
+            <%= f.number_field :time %>
+        <% end %>
     <% end %>
     <br>
     
