@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :steps, only: [:create, :new, :index]
  end
 
+ resources :users do
+    resources :courses, only: [:index]
+ end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

@@ -3,3 +3,11 @@
 <h4>Time that should be spent on course: <%= @course.time %> Minutes </h4>
 <p><%= @course.description %></p>
 
+<!-- list the steps here -->
+    <!-- should have links to the steps show page so to edit or delete-->
+    <!--EX courses/1/steps/1 -->
+
+<%= link_to "Add A Step", new_step_path %>
+<!-- need the path to be new_course_step -->
+    <!-- EX courses/1/steps/new -->
+

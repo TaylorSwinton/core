@@ -1,9 +1,10 @@
-<h1>All Steps</h1>
-
-<%= @steps.each do |step| %>
-<div>
-    <%= link_to step.name, step_path(step) - @step.time%> Minutes
-    Created By: <%= step.user.try(:name) %>
-    Included In: <%= step.course.try(:title) %>
-<div>
-<% end %>
+<h1>Your Steps</h1>
+<ol>
+    <%= @steps.each do |step| %>
+        <div>
+            <li><%= link_to step.name, step_path(step)%></li>
+            Created By: <%= step.user.try(:name) %>
+            Included In: <%= step.course.try(:title) %>
+        <div>
+    <% end %>
+</ol>

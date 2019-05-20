@@ -4,13 +4,17 @@ class StepsController < ApplicationController
             @step = course.steps.build
         else
             @step = Step.new
+            @step.build_course
         end
     end
 
     def create
         #make current course, and create a new step related to it.
+        #byebug
+        #@step = Step.create(step_params)
         @step = current_user.steps.build(step_params)
-
+        #byebug
+        
         if @step.save #if its valid then save and redirect
             redirect_to  step_path(@step)
         else
@@ -39,6 +43,6 @@ class StepsController < ApplicationController
     private
 
         def step_params
-            params.require(:step).permit(:name, :description, :time, :category, :course_id)
+            params.require(:step).permit(:name, :description, :time, :category, :course_id, course_attributes: [:title, :description, :category, :time])
         end
 end

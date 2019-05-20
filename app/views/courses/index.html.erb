@@ -3,4 +3,6 @@
     <%= @courses.each do |course| %>
         <li><%= link_to course.title, course_path(course) %></li>
     <% end %>
+    <!-- This should link to course_steps  -->
+    <!-- /courses/:course_id/steps(.:format)  steps#index -- >
 </ul>

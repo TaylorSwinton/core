@@ -1,5 +1,7 @@
 <h1>Create a Step</h1>
 
+    <%= render partial: 'layouts/errors', locals: {object: @step} %>
+
 <%= form_for(@step) do |f| %>
     <%= f.label :name, "Step Name:" %>
     <%= f.text_field :name %>
@@ -21,8 +23,25 @@
     <%= f.label :course_id, "Choose Course" %>
         <%= f.collection_select :course_id, Course.all, :id, :title, prompt: true %>
 
-    <br>
-    <%= f.submit %>
+    <br><br>
 
+    <h5>Create A Course</h5>
+
+    <%= f.fields_for :course do |c| %>
+        <%= c.label :title %>
+        <%= c.text_field :title %>
+        <br>
+        <%= c.label :description %>
+        <%= c.text_area :description %>
+        <br>
+        <%= f.label :category %>
+        <%= f.select(:category, [ "Workout", "Meditation", "Journaling"]) %>
+        <br>
+        <%= f.label :time %>
+        <%= f.number_field :time %>
+    <% end %>
+    <br>
+    
+    <%= f.submit %>
 <% end %>
 
