@@ -36,8 +36,22 @@ class StepsController < ApplicationController
         else
             @steps = Step.all
         end
+    end
 
-        # You can put a search bar here?
+    
+    def update
+        @step = Step.find_by(id: params[:id])
+        if @step.update(step_params)
+          redirect_to step_path(@step)
+        else
+          render :edit
+        end
+    end
+
+    def destroy
+        @step = Step.find_by(id: params[:id])
+        @step.destroy
+        redirect_to user_path(@step.user)
     end
 
     private

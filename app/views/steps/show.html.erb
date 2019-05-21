@@ -1,7 +1,7 @@
 <h1>Step Name: <%= @step.name %></h1>
-<h3>Time Spent Practicing: <%= @step.time %> Minutes</h3>
+<h3><%= @step.category %></h3>
 <p><%= @step.description %></p>
-<p>Steps are best when done in a full course. Add this step to your course to reap full benifts.</p>
 <br>
-<h6><%= @step.category %></h6>
 
+<%= link_to "Edit Step", edit_step_path(@step) %>
+<%= link_to "Delete Step", step_path(@step), method: :delete %>

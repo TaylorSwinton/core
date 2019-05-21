@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 
     def index
         @courses = Course.all
+        #filters by category need to go here
     end
 
     def show

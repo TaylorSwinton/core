@@ -35,7 +35,7 @@
             <%= c.text_area :description %>
             <br>
             <%= f.label :category %>
-            <%= f.select(:category, [ "Workout", "Meditation", "Journaling"]) %>
+            <%= f.select(:category, [ "Workout", "Meditation", "Journaling"], {:prompt => "Please select"})%>
             <br>
             <%= f.label :time %>
             <%= f.number_field :time %>
