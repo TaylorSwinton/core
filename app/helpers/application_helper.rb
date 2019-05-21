@@ -10,4 +10,9 @@ module ApplicationHelper
     def logged_in?
         !current_user.nil?
     end
+
+    def check_login
+        flash[:alert] = "Please Login or Sign up!"
+        redirect_to '/' if !logged_in?
+    end
 end

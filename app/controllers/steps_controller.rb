@@ -1,4 +1,6 @@
 class StepsController < ApplicationController
+    before_action :check_login
+
     def new
         if params[:course_id] && course = Course.find_by_id(params[:course_id])
             @step = course.steps.build
@@ -16,8 +18,10 @@ class StepsController < ApplicationController
         #byebug
         
         if @step.save #if its valid then save and redirect
-            redirect_to  step_path(@step)
+            #redirect_to  step_path(@step)
+            redirect_to course_steps_path(@course)
         else
+            @step.build_course unless @step.course
             render :new
         end
     end
