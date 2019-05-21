@@ -7,12 +7,17 @@ class Course < ApplicationRecord
     validates :category, presence: true
     validates :description, presence: true
 #Scoping
-    scope :highest_rated, -> { where("course_rating > 4") }
+    #for index courses filter
+    scope :journaling, -> {where(category: "Journaling")}
+    scope :meditation, -> {where(category: "Meditation")}
+    scope :workout, -> {where(category: "Workout")}
 
     accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: lambda { |attributes| attributes['step', 'description'].blank? }
 
-    def step_attributes=(attributes)
-        step = Step.find_or_create_by(attributes)
-        self.step = step if step.valid? || !self.step
-    end
+
+
+    # def step_attributes=(attributes)
+    #     step = Step.find_or_create_by(attributes)
+    #     self.step = step if step.valid? || !self.step
+    # end
 end

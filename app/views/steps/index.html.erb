@@ -3,11 +3,10 @@
 <h4>Time that should be spent on course: <%= @course.time %> Minutes </h4>
 <p><%= @course.description %></p>
 <ol>
-    <%= @steps.each do |step| %>
+    <% @steps.each do |step| %>
         <div>
             <li><%= link_to step.name, step_path(step)%></li>
-            Created By: <%= step.user.try(:name) %>
-            Included In: <%= step.course.try(:title) %>
+            Description: <%= step.description %>
         <div>
     <% end %>
 </ol>

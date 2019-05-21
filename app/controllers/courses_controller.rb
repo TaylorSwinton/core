@@ -1,9 +1,15 @@
 class CoursesController < ApplicationController
     before_action :check_login
+    include CoursesHelper
 
     def index
-        @courses = Course.all
+        #@courses = Course.all
         #filters by category need to go here
+        if params[:category]
+            cat_filters
+        else
+            @courses = Course.all
+        end
     end
 
     def show

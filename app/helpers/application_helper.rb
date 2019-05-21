@@ -12,7 +12,11 @@ module ApplicationHelper
     end
 
     def check_login
-        flash[:alert] = "Please Login or Sign up!"
-        redirect_to '/' if !logged_in?
+        if !logged_in?
+            flash[:alert] = "Please Login or Sign up!"
+            redirect_to '/'
+        else
+            
+        end
     end
 end

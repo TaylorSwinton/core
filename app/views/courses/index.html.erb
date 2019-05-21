@@ -1,6 +1,14 @@
 <h1>All Courses</h1>
+<%= form_tag("/courses", method: "get") do %>
+  <%= label_tag(:category, "Choose A Category") %>
+  <br>
+  <%= select_tag(:category, options_for_select(@courses.collect{ |c| [c.category] })) %>
+ 
+  <%= submit_tag("Filter") %>
+<% end %>
+
 <ul>
-    <%= @courses.each do |course| %>
+    <% @courses.each do |course| %>
         <li><%= link_to course.title, course_steps_path(course) %></li>
     <% end %>
     <!-- course_path(course) -->
