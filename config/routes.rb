@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 #Nested Routes
  resources :courses do
-    resources :steps, only: [:create, :new, :index]
+    resources :steps, only: [:create, :new, :index, :show]
  end
 
  resources :users do
