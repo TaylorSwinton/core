@@ -11,10 +11,10 @@
 
   <body>
   <% if logged_in? %>
-    <%= link_to 'Log Out', logout_path, method: :delete %>
+    Hi, <%= link_to current_user.name, user_path(current_user) %>
     <%= link_to 'View Courses', courses_path %>
     <%= link_to 'Create Steps',  new_step_path %>
-    <%= link_to 'My Profile', user_path(current_user) %>
+    <%= link_to 'Log Out', logout_path, method: :delete %>
   <% end %>
     <%= yield %>
   </body>

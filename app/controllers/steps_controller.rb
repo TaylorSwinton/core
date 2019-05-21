@@ -59,6 +59,6 @@ class StepsController < ApplicationController
     private
 
         def step_params
-            params.require(:step).permit(:name, :description, :time, :category, :course_id, course_attributes: [:title, :description, :category, :time])
+            params.require(:step).permit(:name, :description, :category, :course_id, course_attributes: [:title, :description, :category, :time])
         end
 end
