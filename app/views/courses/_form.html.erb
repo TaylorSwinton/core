@@ -1,0 +1,15 @@
+<%= form_for(@course) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.label :time %>
+    <%= f.number_field :time, min:0 %> Minutes
+    <br>
+    <%= f.label :category %>
+    <%= f.select(:category, [ "Workout", "Meditation", "Journaling"], {:prompt => "Please select"}) %>
+    <br>
+    <%= f.submit 'Submit Course' %>
+<% end %>

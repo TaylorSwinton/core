@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     end
 
     def home
-        
+
     end
 
     #logout route

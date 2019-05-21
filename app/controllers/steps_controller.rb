@@ -19,6 +19,7 @@ class StepsController < ApplicationController
         
         if @step.save #if its valid then save and redirect
             #redirect_to  step_path(@step)
+            @course = @step.course
             redirect_to course_steps_path(@course)
         else
             @step.build_course unless @step.course

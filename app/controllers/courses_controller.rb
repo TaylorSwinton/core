@@ -2,6 +2,19 @@ class CoursesController < ApplicationController
     before_action :check_login
     include CoursesHelper
 
+    def new
+        @course = Course.new
+    end
+
+    def create
+        @course = Course.new(course_params)
+        if @course.save
+            redirect_to course_path(@course)
+        else
+            render :new
+        end
+    end
+
     def index
         #@courses = Course.all
         #filters by category need to go here
