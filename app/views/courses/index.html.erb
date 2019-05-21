@@ -1,8 +1,9 @@
 <h1>All Courses</h1>
 <ul>
     <%= @courses.each do |course| %>
-        <li><%= link_to course.title, course_path(course) %></li>
+        <li><%= link_to course.title, course_steps_path(course) %></li>
     <% end %>
+    <!-- course_path(course) -->
     <!-- This should link to course_steps  -->
     <!-- /courses/:course_id/steps(.:format)  steps#index -- >
 </ul>
