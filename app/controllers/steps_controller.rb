@@ -37,14 +37,13 @@ class StepsController < ApplicationController
     end
 
     def index
-        if params[:course_id] && course = Course.find_by_id(params[:course_id])
+       if params[:course_id] && course = Course.find_by_id(params[:course_id])
             @steps = course.steps
             @course = course
         else
             @steps = Step.all
         end
     end
-
     
     def update
         @step = Step.find_by(id: params[:id])

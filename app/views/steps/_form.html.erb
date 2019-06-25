@@ -20,6 +20,7 @@
         <h5>Create A Course</h5>
 
         <%= f.fields_for :course do |c| %>
+            <#% add hidden field %>
             <%= c.label :title %>
             <%= c.text_field :title %>
             <br>

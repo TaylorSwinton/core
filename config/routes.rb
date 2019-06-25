@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :courses 
-  resources :steps
+  resources :steps 
   resources :users
 
 #Nested Routes
@@ -27,4 +27,6 @@ Rails.application.routes.draw do
 
 # Third party login
   get '/auth/facebook/callback' => 'sessions#fbcreate'
+
+  post "/search" => 'steps#search'
 end

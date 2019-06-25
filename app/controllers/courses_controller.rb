@@ -54,5 +54,12 @@ class CoursesController < ApplicationController
         def course_params
             params.require(:course).permit(:title, :description, :time, :category)
         end
+
+        def course_responders
+            respond_to do |f|
+                f.html
+                f.json {render json: @posts}
+            end
+        end
     
 end

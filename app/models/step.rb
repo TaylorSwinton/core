@@ -22,4 +22,9 @@ end
     scope :writing, -> {where(category: 'writing')}
     scope :reading, -> {where(category: 'reading')}
 
+def search_by_name(name)
+    
+end
+
+
 end
