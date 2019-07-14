@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   #Login/Signup Routes Here
   root 'sessions#home'
+  #root 'users#show'
 
   get '/signup' => 'users#new'
 

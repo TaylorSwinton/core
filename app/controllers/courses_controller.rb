@@ -9,7 +9,11 @@ class CoursesController < ApplicationController
     def create
         @course = Course.new(course_params)
         if @course.save
-            redirect_to course_path(@course)
+            respond_to do |f|
+                f.html {redirect_to course_path(@course)}
+                f.json {render json: @course}
+            end
+            #redirect_to course_path(@course)
         else
             render :new
         end
@@ -17,22 +21,31 @@ class CoursesController < ApplicationController
 
     def index
         #@courses = Course.all
-        #filters by category need to go here
         if params[:category]
             cat_filters
+            responding_json
         else
             @courses = Course.all
+            responding_json
         end
     end
 
     def show
         @course = Course.find_by(id: params[:id])
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @course}
+        end
     end
 
     def destroy
         @course = Course.find_by(id: params[:id])
         @course.destroy
-        redirect_to courses_path
+        respond_to do |f|
+            f.html {redirect_to courses_path}
+            f.json {head :no_content}
+        end
+        #redirect_to courses_path
     end
     
     def edit
@@ -42,7 +55,11 @@ class CoursesController < ApplicationController
     def update
         @course = Course.find_by(id: params[:id])
         if @course.update(course_params)
-          redirect_to course_path(@course)
+            respond_to do |f|
+                f.html {redirect_to course_path(@course)}
+                f.json {render json: @course}
+            end
+            #redirect_to course_path(@course)
         else
           render :edit
         end
@@ -53,6 +70,13 @@ class CoursesController < ApplicationController
         
         def course_params
             params.require(:course).permit(:title, :description, :time, :category)
+        end
+
+        def responding_json
+            respond_to do |f|
+                f.html {render :index}
+                f.json {render json: @courses}
+            end
         end
 
         def course_responders

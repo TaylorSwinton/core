@@ -34,3 +34,17 @@ Confirm:
 - [] Your Rails application must reveal at least one 'has-many' relationship through JSON that is then rendered to the page.
 - [] Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
 - [] At least one of the JS Model Objects must have a method on the prototype.
+
+
+- Requirement ONE
+    - take JSON that you're getting from Rails application and translate it into a JavaScript model, using a constructor function
+    - Can be found in object oriented section JavaScript
+- Requirement TWO
+    - look at study group Active Model Serialization video.
+- Requirement THREE
+    - look at study group Active Model Serialization
+- Requirement FOUR
+    - look at project prep
+- Requirement FIVE
+    - look at Cernan video and  API's POST Lab
+    - can render the form with JavaScript then submit the form to rails
