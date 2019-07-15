@@ -11,7 +11,7 @@
     <% @courses.each do |course| %>
         <li><%= link_to course.title, course_steps_path(course) %></li>
     <% end %>
-    <!-- course_path(course) -->
-    <!-- This should link to course_steps  -->
-    <!-- /courses/:course_id/steps(.:format)  steps#index -- >
 </ul>
+
+<button id="click-me">Click Me</button>
+<div id="new-course"></div>
