@@ -32,6 +32,7 @@ class Course {
         this.course_rating = object.course_rating
         this.category = object.category
         this.time = object.time
+        this.course_rating = this.course_rating
         this.steps = object.steps
     }
 }
