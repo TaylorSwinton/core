@@ -18,9 +18,14 @@ class StepsController < ApplicationController
         #byebug
         
         if @step.save #if its valid then save and redirect
-            #redirect_to  step_path(@step)
             @course = @step.course
-            redirect_to course_steps_path(@course)
+            respond_to do |f|
+                f.html {redirect_to course_steps_path(@course)}
+                f.json {render json: @course}
+            end
+
+            #@course = @step.course
+            #redirect_to course_steps_path(@course)
         else
             @step.build_course unless @step.course
             render :new
@@ -34,21 +39,37 @@ class StepsController < ApplicationController
     def show
         @step = Step.find_by(id: params[:id])
         @course = @step.course
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @step}
+        end
     end
 
     def index
        if params[:course_id] && course = Course.find_by_id(params[:course_id])
             @steps = course.steps
             @course = course
+            respond_to do |f|
+                f.html {render :index}
+                f.json {render json: @course}
+            end
         else
             @steps = Step.all
+            respond_to do |f|
+                f.html {render :index}
+                f.json {render json: @steps}
+            end
         end
     end
     
     def update
         @step = Step.find_by(id: params[:id])
         if @step.update(step_params)
-          redirect_to step_path(@step)
+            respond_to do |f|
+                f.html {redirect_to step_path(@step)}
+                f.json {render json: @course}
+            end
+          #redirect_to step_path(@step)
         else
           render :edit
         end
@@ -57,7 +78,11 @@ class StepsController < ApplicationController
     def destroy
         @step = Step.find_by(id: params[:id])
         @step.destroy
-        redirect_to user_path(@step.user)
+        respond_to do |f|
+            f.html {redirect_to user_path(@step.user)}
+            f.json {head :no_content}
+        end
+        #redirect_to user_path(@step.user)
     end
 
     private

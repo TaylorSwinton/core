@@ -1,5 +1,5 @@
 $(function(){
-    console.log("IT WORKS")
+    console.log("COURSE WORKS")
     listenForClick()
 })
 

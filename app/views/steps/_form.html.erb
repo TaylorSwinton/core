@@ -2,7 +2,7 @@
 
     <%= render partial: 'layouts/errors', locals: {object: @step} %>
 
-<%= form_for(@step) do |f| %>
+<%= form_for @step, html: {id: "new-step" } do |f| %>
     <%= f.label :name, "Step Name:" %>
     <%= f.text_field :name %>
     <br>
