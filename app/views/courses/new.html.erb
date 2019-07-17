@@ -1,3 +1,29 @@
 <h1>Create Course</h1>
 
 <%= render 'form' %>
+
+<div id="courseResult">
+    <h1 id="courseTitle"></h1>
+    <h3 id="courseCategory"></h3>
+    <h4 id="courseTime"></h4>
+    <p id="courseDescription"></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $('form').submit(function(e) {
+            e.preventDefault();
+            var values = $(this).serialize();
+
+            var posting = $.post('/courses', values);
+
+            posting.done(function(data) {
+                var course = data;
+                $("#courseTitle").text(course["title"]);
+                $("#courseCategory").text(course["category"]);
+                $("#courseTime").text(course["time"]);
+                $("#courseDescription").text(course["description"]);
+            });
+        });
+    });
+</script>

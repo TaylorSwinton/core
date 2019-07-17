@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
         if @course.save
             respond_to do |f|
                 f.html {redirect_to course_path(@course)}
-                f.json {render json: @course}
+                f.json {render json: @course, status: 301}
             end
             #redirect_to course_path(@course)
         else

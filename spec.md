@@ -48,3 +48,6 @@ Confirm:
 - Requirement FIVE
     - look at Cernan video and  API's POST Lab
     - can render the form with JavaScript then submit the form to rails
+
+    - NEED TO WORK ON FORM
+    - NEED TO WORK ON STEPS IN NEXT
