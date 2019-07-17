@@ -79,6 +79,13 @@ class CoursesController < ApplicationController
             end
         end
 
+        # def responding_json
+        #     respond_to do |f|
+        #         f.html {render :index}
+        #         f.json: Course.to_json(include: :steps)
+        #     end
+        # end
+
         def course_responders
             respond_to do |f|
                 f.html

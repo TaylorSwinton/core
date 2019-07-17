@@ -1,12 +1,14 @@
 <h1 class="courseTitle"><%= @course.title %> Course<h1>
 <h3 class="courseCategory">Category: <%= @course.category %> </h3>
 <h4 class="courseTime">Time that should be spent on course: <%= @course.time %> Minutes </h4>
-<p class="courseDescription"><%= @course.description %></p>
-<ol class="courseSteps">
+<p class="courseDescription">Description: <%= @course.description %></p>
+<ol>
     <% @steps.each do |step| %>
         <div>
-            <li><%= link_to step.name, step_path(step)%></li>
+            <li class ="courseSteps"><%= link_to step.name, step_path(step)%> 
+            <br>
             Description: <%= step.description %>
+            </li>
         <div>
     <% end %>
 </ol>
@@ -22,11 +24,11 @@
             e.preventDefault();
                 var nextId = parseInt($(".js-next").attr("data-id")) + 1;
                 $.getJSON("/courses/" + nextId + "/steps", function(data){
-                    $(".courseTitle").text(data["title"]);
-                    $(".courseCategory").text(data["category"]);
-                    $(".courseTime").text(data["time"]);
-                    $(".courseDescription").text(data["description"]);
-                  //  $(".courseSteps").text(data["steps"]["name"]);
+                    $(".courseTitle").text(data["title"] + " Course");
+                    $(".coursseCategory").text("Category: " + data["category"]);
+                    $(".courseTime").text("Time that should be spent on course: " + data["time"] + " Minutes");
+                    $(".courseDescription").text("Description: " +  data["description"]);
+                    $(".courseSteps").text(data["steps"])
                     $(".js-next").attr("data-id", data["id"]);
                 });
         });

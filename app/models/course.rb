@@ -12,7 +12,7 @@ class Course < ApplicationRecord
     scope :meditation, -> {where(category: "Meditation")}
     scope :workout, -> {where(category: "Workout")}
 
-    accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: lambda { |attributes| attributes['step', 'description'].blank? }
+    accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: lambda { |attributes| attributes['name', 'description'].blank? }
 
 
 
