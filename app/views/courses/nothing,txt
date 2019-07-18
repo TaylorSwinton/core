@@ -1,7 +1,0 @@
-posting.done(functon(data) {
-                var course = data;
-                $("#courseTitle").text(course["title"]);
-                $("#courseCategory").text(course["category"]);
-                $("#courseTime").text(course["time"]);
-                $("#courseDescription").text(course["description"]);
-            });

@@ -5,9 +5,10 @@
 <ol>
     <% @steps.each do |step| %>
         <div>
-            <li class ="courseSteps"><%= link_to step.name, step_path(step)%> 
-            <br>
-            Description: <%= step.description %>
+            <li class ="courseSteps"><%= link_to step.name, step_path(step)%>
+                <ul>
+                    <li class="stepDesc">Description: <%= step.description %></li>
+                </ul> 
             </li>
         <div>
     <% end %>
@@ -25,10 +26,15 @@
                 var nextId = parseInt($(".js-next").attr("data-id")) + 1;
                 $.getJSON("/courses/" + nextId + "/steps", function(data){
                     $(".courseTitle").text(data["title"] + " Course");
-                    $(".coursseCategory").text("Category: " + data["category"]);
+                    $(".courseCategory").text("Category: " + data["category"]);
                     $(".courseTime").text("Time that should be spent on course: " + data["time"] + " Minutes");
                     $(".courseDescription").text("Description: " +  data["description"]);
-                    $(".courseSteps").text(data["steps"])
+
+                    for(let i = 0, l = data.steps.length; i < l; i++){
+                        $(".courseSteps").text(data.steps.name)
+                        $(".stepDesc").text("Description: " + data.steps.description)
+                    };
+
                     $(".js-next").attr("data-id", data["id"]);
                 });
         });

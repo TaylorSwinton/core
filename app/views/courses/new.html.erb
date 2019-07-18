@@ -13,6 +13,10 @@
     $(function() {
         $('form').submit(function(e) {
             e.preventDefault();
+            alert("Does it work")
+
+            
+// WORK ON THE BELOW
             var values = $(this).serialize();
 
             var posting = $.post('/courses', values);
