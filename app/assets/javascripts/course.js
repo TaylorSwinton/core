@@ -11,6 +11,7 @@ $(function(){
 // }
 
 function courseWorkers() {
+    
     $('#new_course').on("submit", function(e) {
         e.preventDefault()
         const values = $(this).serialize()
@@ -24,6 +25,13 @@ function courseWorkers() {
             $("#app-container").html(htmlToAdd)
         });
     });
+
+    $(".js-more").on('click', function() {
+        var id = $(this).data("id");
+        $.get("/courses/" + id + ".json", function(data) {
+        $("#body-" + id).html(data["description"])
+        })
+    })
 }
 
 // function getPost(){
