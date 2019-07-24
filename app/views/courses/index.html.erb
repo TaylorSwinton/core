@@ -9,7 +9,7 @@
 
 <ul>
     <% @courses.each do |course| %>
-        <li><%= link_to course.title, course_steps_path(course) %></li>
+        <li><%= link_to course.title, course_steps_path(course), :class => 'courseIndex', :id => course.id %></li>
         <div id="body-<%= course.id %>">
 
         <%= truncate course.description, length: 0 %>
@@ -17,14 +17,3 @@
         <button class="js-more" data-id="<%=course.id%>">Preview</button>
     <% end %>
 </ul>
-
-<%# <script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".js-more").on('click', function() {
-      var id = $(this).data("id");
-      $.get("/courses/" + id + ".json", function(data) {
-        $("#body-" + id).html(data["description"])
-      })
-    })
-  })
-</script> %>

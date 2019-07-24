@@ -11,5 +11,5 @@
     <%= f.label :category %>
     <%= f.select(:category, [ "Workout", "Meditation", "Journaling"], {:prompt => "Please select"}) %>
     <br>
-    <%= f.submit 'Submit Course' %>
+    <%= f.submit 'Submit Course', :id => 'courseSubmit' %>
 <% end %>

@@ -10,21 +10,22 @@ $(function(){
 //     })
 // }
 
-function courseWorkers() {
+const courseWorkers = () => {
     
-    $('#new_course').on("submit", function(e) {
+    $("form#new_course").on("submit", function(e) {
         e.preventDefault()
-        const values = $(this).serialize()
+        const serialData = $(this).serialize()
 
-        $.post("/courses", values).done(function(data) {
-            //  console.log(data)
-            $("#app-container").html("")
-            const newCourse = new Course(data)
-            const htmlToAdd = newCourse.formatShow()
-
-            $("#app-container").html(htmlToAdd)
-        });
+         $.post("/courses", serialData).done(function(data) {
+             debugger
+       });
     });
+
+    // console.log("This should be written")
+    // $("#app_container").empty()
+    // const newCourse = new Course(data)
+    // const htmlToAdd = newCourse.formatShow()
+    // $("#app_container").append(htmlToAdd)
 
     $(".js-more").on('click', function() {
         var id = $(this).data("id");
@@ -32,6 +33,38 @@ function courseWorkers() {
         $("#body-" + id).html(data["description"])
         })
     })
+
+    // $(".js-next").on("click", function(e) {
+    //     e.preventDefault();
+    //         var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    //         $.getJSON("/courses/" + nextId + "/steps", function(data){
+    //             $(".courseTitle").text(data["title"] + " Course");
+    //             $(".courseCategory").text("Category: " + data["category"]);
+    //             $(".courseTime").text("Time that should be spent on course: " + data["time"] + " Minutes");
+    //             $(".courseDescription").text("Description: " +  data["description"]);
+                
+    //             for(let i = 0, l = data.steps.length; i < l; i++){
+    //                 $(".courseSteps").text(data.steps.name)
+    //                 $(".stepDesc").text("Description: " + data.steps.description)
+    //             };
+
+    //             $(".js-next").attr("data-id", data["id"]);
+    //      });
+    // });
+
+    $(document).on("click", ".courseIndex", function(e) {
+        e.preventDefault()
+        $('div#app_container').html('')
+        let id = $(this).attr('id')
+        fetch(`/courses/${id}.json`)
+        .then(res => res.json())
+        .then(course => {
+            let newCourse = new Course(course)
+            let courseHTML = newCourse.formatShow()    
+            
+            $('div#app_container').append(courseHTML)
+        });
+    });
 }
 
 // function getPost(){
@@ -48,38 +81,48 @@ function courseWorkers() {
 // }
 
 // Constructor Functions
-// class Course {
-//     constructor (object){
-//         this.id = object.id
-//         this.title = object.title
-//         this.description = object.description
-//         this.course_rating = object.course_rating
-//         this.category = object.category
-//         this.time = object.time
-//         this.course_rating = this.course_rating
-//         this.steps = object.steps
-//     }
-// }
-
-function Course(course) {
-        this.id = course.id
-        this.title = course.title
-        this.description = course.description
-        this.category = course.category
-        this.time = course.time
-        this.steps = course.steps
+class Course {
+    constructor (object){
+        this.id = object.id
+        this.title = object.title
+        this.description = object.description
+        this.course_rating = object.course_rating
+        this.category = object.category
+        this.time = object.time
+        this.course_rating = this.course_rating
+        this.steps = object.steps
+    }
 }
+
+// function Course(course) {
+//         this.id = course.id
+//         this.title = course.title
+//         this.description = course.description
+//         this.category = course.category
+//         this.time = course.time
+//         this.steps = course.steps
+// }
 
 //Prototype Functions
 Course.prototype.formatShow = function() {
-    let courseHtml = `
-    <h1>${this.title}</h1>
-    <h3>${this.category}</h3>
-    <h4>${this.time}</h4>
-    <p>${this.description}</p>
-    `
-    
-    return courseHtml
+    let steps = this.steps.map(step => {
+                return(`
+                    <ul>
+                        <li>${step.name}</li>
+                    </ul>
+                `)
+            }).join('')
+            
+            return(`
+                <div>
+                    <h1>${this.title} Course</h1>
+                    <h3>Category: ${this.category}</h3>
+                    <h4>Time that should be spent on course: ${this.time} Minutes</h4>
+                    <p><strong>Description:</strong> ${this.description}</p>
+                    <p>${steps}</p>
+                </div>
+                
+            `)
 }
 
 // Course.prototype.courseHTML = function() {

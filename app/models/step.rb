@@ -22,8 +22,14 @@ end
     scope :writing, -> {where(category: 'writing')}
     scope :reading, -> {where(category: 'reading')}
 
-def search_by_name(name)
-    
+def next 
+    step = Step.where("id > ?", id).first
+
+    if step
+        step
+    else
+        Step.first
+    end
 end
 
 

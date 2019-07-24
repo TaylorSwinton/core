@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
     before_action :check_login
+    skip_before_action :verify_authenticity_token
+
     include CoursesHelper
 
     def new
@@ -9,11 +11,12 @@ class CoursesController < ApplicationController
     def create
         @course = Course.new(course_params)
          if @course.save
-        #     respond_to do |f|
-        #         f.html {redirect_to course_path(@course)}
-        #    end
+            #  respond_to do |f|
+            #      f.html {redirect_to course_path(@course)}
+            #      f.json {render json: @course}
+            # end
             #turns into course.json if status is removed
-             render json: @course, status: 301
+            render json: @course, status: 301
             #redirect_to course_path(@course)
         else
             render :new
