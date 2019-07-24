@@ -121,7 +121,9 @@ Course.prototype.formatShow = function() {
                     <p><strong>Description:</strong> ${this.description}</p>
                     <p>${steps}</p>
                 </div>
-                
+                <form action="/courses">
+                     <input type="submit" value="Courses" />
+                </form>
             `)
 }
 
