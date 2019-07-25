@@ -12,21 +12,17 @@ $(function(){
 
 const courseWorkers = () => {
     
-   // $("form#new_course").on("submit", function(e) {
-    $('form#new_course.new_course').submit(function(e) {
+    $("form#new_course.new_course").on("submit", function(e) {
         e.preventDefault()
         const serialData = $(this).serialize()
             $.post('/courses', serialData).done(function(data) {
-                console.log("OK what's going on")
-                //will run debugger if there is no data is submitted
-                debugger
+                   $("#app_container").empty()
+                   const newCourse = new Course(data)
+                   const htmlToAdd = newCourse.formatShow()
+                    $("#app_container").append(htmlToAdd)
             });
      });
 
-    // $("#app_container").empty()
-    // const newCourse = new Course(data)
-    // const htmlToAdd = newCourse.formatShow()
-    // $("#app_container").append(htmlToAdd)
     $(document).on('click', ".js-more", function() {
         var id = $(this).data("id");
         $.get("/courses/" + id + ".json", function(data) {
@@ -97,7 +93,8 @@ class Course {
 
 //Prototype Functions
 Course.prototype.formatShow = function() {
-    let steps = this.steps.map(step => {
+    if (steps != []) { 
+    var steps = this.steps.map(step => {
                 return(`
                     <ul>
                         <li>${step.name}</li>
@@ -107,7 +104,7 @@ Course.prototype.formatShow = function() {
                     </ul>
                 `)
             }).join('')
-            
+        }
             return(`
                 <div>
                     <h1>${this.title} Course</h1>

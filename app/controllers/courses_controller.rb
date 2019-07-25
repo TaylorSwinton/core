@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
             #      f.json {render json: @course}
             # end
             #turns into course.json if status is removed
-            render json: @course, status: 301
+            render json: @course
             #redirect_to course_path(@course)
         else
             render :new
