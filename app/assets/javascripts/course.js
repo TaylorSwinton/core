@@ -12,45 +12,46 @@ $(function(){
 
 const courseWorkers = () => {
     
-    $("form#new_course").on("submit", function(e) {
+   // $("form#new_course").on("submit", function(e) {
+    $('form#new_course.new_course').submit(function(e) {
         e.preventDefault()
         const serialData = $(this).serialize()
+            $.post('/courses', serialData).done(function(data) {
+                console.log("OK what's going on")
+                //will run debugger if there is no data is submitted
+                debugger
+            });
+     });
 
-         $.post("/courses", serialData).done(function(data) {
-             debugger
-       });
-    });
-
-    // console.log("This should be written")
     // $("#app_container").empty()
     // const newCourse = new Course(data)
     // const htmlToAdd = newCourse.formatShow()
     // $("#app_container").append(htmlToAdd)
-
-    $(".js-more").on('click', function() {
+    $(document).on('click', ".js-more", function() {
         var id = $(this).data("id");
         $.get("/courses/" + id + ".json", function(data) {
         $("#body-" + id).html(data["description"])
+        
         })
     })
 
-    // $(".js-next").on("click", function(e) {
-    //     e.preventDefault();
-    //         var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    //         $.getJSON("/courses/" + nextId + "/steps", function(data){
-    //             $(".courseTitle").text(data["title"] + " Course");
-    //             $(".courseCategory").text("Category: " + data["category"]);
-    //             $(".courseTime").text("Time that should be spent on course: " + data["time"] + " Minutes");
-    //             $(".courseDescription").text("Description: " +  data["description"]);
+    $(".js-next").on("click", function(e) {
+        e.preventDefault();
+            var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+            $.getJSON("/courses/" + nextId + "/steps", function(data){
+                $(".courseTitle").text(data["title"] + " Course");
+                $(".courseCategory").text("Category: " + data["category"]);
+                $(".courseTime").text("Time that should be spent on course: " + data["time"] + " Minutes");
+                $(".courseDescription").text("Description: " +  data["description"]);
                 
-    //             for(let i = 0, l = data.steps.length; i < l; i++){
-    //                 $(".courseSteps").text(data.steps.name)
-    //                 $(".stepDesc").text("Description: " + data.steps.description)
-    //             };
+                // for(let i = 0, l = data.steps.length; i < l; i++){
+                //     $(".courseSteps").text(data.steps.name)
+                //     $(".stepDesc").text("Description: " + data.steps.description)
+                // };
 
-    //             $(".js-next").attr("data-id", data["id"]);
-    //      });
-    // });
+                $(".js-next").attr("data-id", data["id"]);
+         });
+    });
 
     $(document).on("click", ".courseIndex", function(e) {
         e.preventDefault()
@@ -94,21 +95,15 @@ class Course {
     }
 }
 
-// function Course(course) {
-//         this.id = course.id
-//         this.title = course.title
-//         this.description = course.description
-//         this.category = course.category
-//         this.time = course.time
-//         this.steps = course.steps
-// }
-
 //Prototype Functions
 Course.prototype.formatShow = function() {
     let steps = this.steps.map(step => {
                 return(`
                     <ul>
                         <li>${step.name}</li>
+                        <ul>
+                            <li>${step.description}</li>
+                        </ul>
                     </ul>
                 `)
             }).join('')
@@ -121,26 +116,17 @@ Course.prototype.formatShow = function() {
                     <p><strong>Description:</strong> ${this.description}</p>
                     <p>${steps}</p>
                 </div>
+
+                <form action="/courses/${this.id}/steps/new">
+                    <input type="submit" value="Add A Step" />
+                </form>
+
                 <form action="/courses">
                      <input type="submit" value="Courses" />
                 </form>
+
+                <form action="/courses/${this.id}/edit">
+                <input type="submit" value="Edit Course" />
+                </form>
             `)
 }
-
-// Course.prototype.courseHTML = function() {
-//     let steps = this.steps.map(step => {
-//         return(`
-//             <ul>
-//                 <li>${step.name}</li>
-//             </ul>
-//         `)
-//     }).join('')
-    
-//     return(`
-//         <div>
-//             <h3>${this.title}</h3>
-//             <p>${this.description}<//p>
-//             <p>${steps}</p>
-//         </div>
-//     `)
-//}
