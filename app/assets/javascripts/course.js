@@ -11,8 +11,7 @@ $(function(){
 // }
 
 const courseWorkers = () => {
-    
-    $("form#new_course.new_course").on("submit", function(e) {
+    $(document).on('submit', 'form#new_course.new_course', function(e) {
         e.preventDefault()
         const serialData = $(this).serialize()
             $.post('/courses', serialData).done(function(data) {
