@@ -3,13 +3,6 @@ $(function(){
     courseWorkers()
 })
 
-// function listenForClick(){
-//     $("button#click-me").on('click', function(e) {
-//         e.preventDefault()
-//         getPost()
-//     })
-// }
-
 const courseWorkers = () => {
     $(document).on('submit', 'form#new_course.new_course', function(e) {
         e.preventDefault()
@@ -62,19 +55,6 @@ const courseWorkers = () => {
         });
     });
 }
-
-// function getPost(){
-//     $.ajax({
-//         url:'http://localhost:3000/courses',
-//         method: 'get',
-//         dataType: 'json',
-//     }).done(function(data) {
-//         console.log("out data is", data)
-//         let firstCourse = new Course(data[0])
-//         let myCourseHTML = firstCourse.courseHTML()
-//         document.getElementById('new-course').innerHTML += myCourseHTML
-//     })
-// }
 
 // Constructor Functions
 class Course {
