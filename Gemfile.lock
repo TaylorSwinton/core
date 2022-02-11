@@ -52,13 +52,13 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.6.1)
-      execjs
+    autoprefixer-rails (10.4.2.0)
+      execjs (~> 2)
     bcrypt (3.1.12)
     bindex (0.7.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
-    bootstrap (4.3.1)
+    bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
@@ -154,12 +154,13 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
-    popper_js (1.14.5)
+    popper_js (1.16.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
-    puma (3.12.1)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -262,7 +263,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pry
-  puma (~> 3.11)
+  puma (~> 4.3)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
   selenium-webdriver
